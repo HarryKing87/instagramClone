@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Intervention\Image\Facades\Image;
 
 class ProfilesController extends Controller
 {
@@ -11,7 +12,7 @@ class ProfilesController extends Controller
     {
         //$user = User::find($user); // We're looking for a specific user with a name id
         //$user = User::findOrFail($user); // The main difference from the above
-        // is that findOrFail actually displays a 404 Error instead of the actual error code
+        // is that findOrFail actually displays a 404 Error instead of the actual (Exception) error code
 
         return view('profiles.index', compact('user'));
     }
@@ -33,7 +34,22 @@ class ProfilesController extends Controller
         ]);
 
 
-        auth()->user()->profile->update($data);
+
+        // Upload new image from the edit section functionality
+        if (request('image'))
+        {
+            $imagePath = request('image')->store('profile', 'public');
+
+            $image = Image::make(public_path("storage/{$imagePath}"))->fit(1000, 1000);
+
+            $image->save();
+        }
+
+        auth()->user()->profile->update(array_merge(
+            $data, 
+            ['image' => $imagePath]
+        ));
+
 
         return redirect("/profile/{$user->id}");
     }

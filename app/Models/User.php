@@ -43,6 +43,16 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    protected static function boot() {
+        parent::boot();
+
+        static::created(
+            function ($user) {
+                
+            }
+        );
+    }
+
     // Each user has many posts that can create... Same applies to the Post.php 
     // where we're creating another function that tells us that the user is able to 
     // create many posts (hasMany)
