@@ -43,11 +43,16 @@ class ProfilesController extends Controller
             $image = Image::make(public_path("storage/{$imagePath}"))->fit(1000, 1000);
 
             $image->save();
+
+            $imageArray = ['image' => $imagePath]; // Save profile image and 
+            // if wanted to change, it will, but if we edit the page and don't upload
+            // and image, the image stays
         }
+
 
         auth()->user()->profile->update(array_merge(
             $data, 
-            ['image' => $imagePath]
+            $imageArray ?? []
         ));
 
 
