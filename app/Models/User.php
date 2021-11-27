@@ -43,12 +43,17 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    // This function allows us to create a dummy profile for each time a registered
+    // user logs into the platform for the first time.
     protected static function boot() {
         parent::boot();
 
+        // The first time each user signs in, their username will appear at the dummy profile
         static::created(
             function ($user) {
-                
+                $user->profile()->create([
+                    'title'=> $user->username,
+                ]);
             }
         );
     }

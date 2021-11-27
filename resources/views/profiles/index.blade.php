@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row">
         <div class="col-3 p-5">
-            <img src="https://pbs.twimg.com/profile_images/1340029362939293697/tvKmC4Iz_400x400.jpg" class="rounded-circle" width = "200px";>
+            <img src="/storage/{{$user->profile->image}}" class="rounded-circle w-100" width = "200px";>
         </div>
         <div class="col-9 pt-5">
             <div class="d-flex justify-content-between align-items-baseline">
