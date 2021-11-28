@@ -11,11 +11,9 @@
                 <div class="d-flex align-items-center pb-3">
 
                 <div class="h4">{{ $user -> username }}</div>
-                <button class="btn btn-primary ml-4">Follow</button>
-
+                <example-component></example-component>
                 </div>
                 @can('update', $user->profile)
-            
                 <a href="/p/create">Add New Post</a>
 
                 @endcan
@@ -47,5 +45,6 @@
         </div>
         @endforeach
     </div>
+    <script src="app.js"></script>
 </div>
 @endsection
