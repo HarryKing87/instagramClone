@@ -11,7 +11,9 @@
                 <div class="d-flex align-items-center pb-3">
 
                 <div class="h4">{{ $user -> username }}</div>
+                <div ip="app">
                 <example-component></example-component>
+                </div>
                 </div>
                 @can('update', $user->profile)
                 <a href="/p/create">Add New Post</a>
@@ -45,6 +47,5 @@
         </div>
         @endforeach
     </div>
-    <script src="app.js"></script>
-</div>
+    </div>
 @endsection
