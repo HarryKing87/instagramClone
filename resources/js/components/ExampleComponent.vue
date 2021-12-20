@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <h1>Hello!</h1>
+        <button class="btn btn-primary ml-4">Follow</button>
     </div>
 </template>
 
