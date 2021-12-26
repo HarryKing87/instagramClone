@@ -14,7 +14,9 @@ class ProfilesController extends Controller
         //$user = User::findOrFail($user); // The main difference from the above
         // is that findOrFail actually displays a 404 Error instead of the actual (Exception) error code
 
-        return view('profiles.index', compact('user'));
+        $follows = (auth()->user()) ? auth()->user()->following->contains($user->id) : false;
+
+        return view('profiles.index', compact('user', 'follows'));
     }
 
     public function edit(\App\Models\User $user) {

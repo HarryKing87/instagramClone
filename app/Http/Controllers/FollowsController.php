@@ -8,7 +8,12 @@ use App\Models\User;
 
 class FollowsController extends Controller
 {
+
+    public function __contruct() {
+        $this->middleware('auth');
+    }
+
     public function store(User $user) {
-        return $user->username;
+        return auth()->user()->following()->toggle($user->profile);
     }
 }

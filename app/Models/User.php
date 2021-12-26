@@ -65,6 +65,10 @@ class User extends Authenticatable
         return $this ->hasMany(Post::class)->orderBy('created_at', 'DESC'); // Added the "->orderBy('created_at', 'DESC')" as we needed our posts to be ordered by the newest post to be displayed first
     }
 
+    public function following() {
+        return $this->belongsToMany(Profile::class);
+    }
+
     // We are in the User folder... A user has ONE profile, so we're creating a function
     // that tells us that if a user is logged in, he/she will have only ONE profile
     // The same applies to Profile.php which creates a function that tells the program

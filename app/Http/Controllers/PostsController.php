@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
 
@@ -12,6 +13,14 @@ class PostsController extends Controller
     // Although it was leading to an error message, now we can do it ONLY signed in.
     public function __construct() {
         $this->middleware('auth');
+    }
+
+    public function index() {
+        $users = auth()->user()->following()->pluck('profiles.user_id');
+
+        $posts = Post::whereIn('user_id', $users)->with('user')->latest()->paginate(5);
+
+        return view('posts.index', compact('posts'));
     }
 
 

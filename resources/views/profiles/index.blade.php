@@ -5,9 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <title>Document</title>
+    <title>Instagram Clone</title>
 </head>
 <body>
+@include('layouts/app')
 <div class="container">
     <div class="row">
         <div class="col-3 p-5">
@@ -19,7 +20,7 @@
 
                 <div class="h4">{{ $user -> username }}</div>
                 <div id="app">
-                <example-component user-id="{{ $user->id }}"></example-component>
+                <example-component user-id="{{ $user->id }}" follows="{{$follows}}"></example-component>
                 </div>
                 </div>
                 @can('update', $user->profile)
@@ -34,8 +35,8 @@
 
             <div class="d-flex">
                 <div class="pr-5"><strong>{{$user->posts->count()}}</strong> posts</div>
-                <div class="pr-5"><strong>12k</strong> followers</div>
-                <div class="pr-5"><strong>212</strong> following</div>
+                <div class="pr-5"><strong>{{$user->profile->followers->count()}}</strong> followers</div>
+                <div class="pr-5"><strong>{{$user->following->count()}}</strong> following</div>
             </div>
             <div class="pt-4 font-weight-bold">
             {{$user->profile->title}}
