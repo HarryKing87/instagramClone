@@ -19,7 +19,7 @@
 
                 <div class="h4">{{ $user -> username }}</div>
                 <div id="app">
-                <example-component></example-component>
+                <example-component user-id="{{ $user->id }}"></example-component>
                 </div>
                 </div>
                 @can('update', $user->profile)
